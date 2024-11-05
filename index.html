@@ -1,0 +1,120 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Página web sobre trading"> 
+        <title>Trading Web - Carrison</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/spinner.css">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="nav-bar">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo.jpg" alt="Logo image">
+                    </a>
+
+                    <div class="nav-container">
+                        <nav>
+                            <a href="#" class="nav-links">Inicio</a>
+                            <a href="#" class="nav-links">Mis cursos</a>
+                            <a href="#" class="nav-links">Sobre Mi</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-image">
+                <div class="header-text">
+                    <h1 class="no-margin header-title">Consejos y cursos sobre trading</h1>
+                    <p class="no-margin header-p">Aprende y conviértete en un profesional</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section>
+                <h2 class="section-title">¿Qué puedo aprender?</h2>
+
+                <div class="courses-section">
+                    <div class="card">
+                        <div class="icon-div">
+                            <img src="images/concept-icon.svg" alt="icon">
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">Conceptos básicos</h2>
+                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="icon-div">
+                            <img src="images/strategy-icon.svg" alt="icon">
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">Estrategias</h2>
+                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-div button-courses-div">
+                    <a href="#" class="button button-courses">Ver Cursos</a>
+                </div>
+            </section>
+
+            <section>
+                <hr>
+                <h2 class="contact-title">Contacto</h2>
+
+                <form class="form" id="form">
+                    <fieldset>
+                        <legend>Contáctame llenando los campos</legend>
+                        <div class="contact-fields">
+                            <div class="field">
+                                <label for="name">Nombre <span>*</span></label>
+                                <input type="text" name="name" id="name" placeholder="Tu Nombre" class="input-text" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Teléfono <span>*</span></label>
+                                <input type="tel" name="phone" id="phone" placeholder="Tu Teléfono" class="input-text" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Correo electrónico <span>*</span></label>
+                                <input type="email" name="email" id="email" placeholder="Tu Email" class="input-text" required>
+                            </div>
+                            <div class="field">
+                                <label for="message">Mensaje</label>
+                                <textarea name="message" id="message" placeholder="Tenia la duda de..." class="input-text"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="button-div">
+                            <input type="submit" class="button" id="btn-submit" value="Enviar">
+                        </div>
+
+                        <div id="div-spinner" class="div-spinner hide-spinner">
+                            <span class="loader"></span>
+                        </div>
+                        
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Made it by Carrison.</p>
+        </footer>
+
+        <script src="main.js"></script>
+        <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js "></script>
+    </body>
+</html>
