@@ -1,8 +1,22 @@
+const inputName =  document.querySelector('#name');
+const inputPhone =  document.querySelector('#phone');
+const inputEmail = document.querySelector('#email');
+const inputMessage = document.querySelector('#message');
+const btnSubmit = document.querySelector('#btn-submit');
+const divSpinner = document.querySelector('#div-spinner');
 const form = document.querySelector('#form');
+
+inputName.addEventListener('blur', validate);
+inputPhone.addEventListener('blur', validate);
+inputEmail.addEventListener('blur', validate);
+inputMessage.addEventListener('blur', validateTextArea);
+form.addEventListener('submit', submitForm);
+
 
 window.addEventListener('beforeunload', () => {
     form.reset();
 });
+
 
 const formObj = {
     name: '',
@@ -10,19 +24,6 @@ const formObj = {
     email: '',
     message: ''
 }
-
-const inputName =  document.querySelector('#name');
-const inputPhone =  document.querySelector('#phone');
-const inputEmail = document.querySelector('#email');
-const inputMessage = document.querySelector('#message');
-const btnSubmit = document.querySelector('#btn-submit');
-const divSpinner = document.querySelector('#div-spinner');
-
-inputName.addEventListener('blur', validate);
-inputPhone.addEventListener('blur', validate);
-inputEmail.addEventListener('blur', validate);
-inputMessage.addEventListener('blur', validateTextArea);
-form.addEventListener('submit', submitForm);
 
 
 checkFormInfo();
@@ -98,10 +99,10 @@ function showAlert(message, reference) {
     error.textContent = message;
     error.classList.add('error');
 
-    reference.appendChild(error)
+    reference.appendChild(error);
 
     setTimeout(() => {
-        error.remove()
+        error.remove();
     }, 4000);
 };
 
@@ -136,7 +137,7 @@ function submitForm(event) {
 
         Swal.fire({
             title: "Gracias por contactar conmigo",
-            text: "En breve te llegará un correo con instrucciones",
+            text: "En breve recibirás llegará un correo con instrucciones",
             icon: "success",
             confirmButtonText: "Genial!"
         });

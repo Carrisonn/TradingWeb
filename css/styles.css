@@ -1,11 +1,16 @@
 :root {
     --blackColor: #000000;
+    --blackColor2: #101010;
     --whiteColor: #ffffff;
     --whiteColor2: #dfdfdf;
     --greyColor: #808080;
     --greyColor2: #757575;
+    --greyColor3: #bbbbbb;
     --yellowColor: #ffc107;
     --redColor: #c40202;
+    --blueColor: #00a3cc;
+    --blueColor2: #0089ac;
+    --greenColor: #02a502;
 }
 
 html {
@@ -44,12 +49,20 @@ img {
     margin: 0;
 }
 
+.no-padding {
+    padding: 0;
+}
+
+.text-left {
+    text-align: left;
+    margin-left: 1rem;
+}
+
 .button {
-    background-color: #700170;
+    background-color: var(--blueColor);
     color: var(--whiteColor);
     padding: 1rem 3rem;
     font-size: 2rem;
-    text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: .5rem;
@@ -63,16 +76,69 @@ img {
     opacity: .6;
 }
 
+.error {
+    color: var(--redColor);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    margin: 1rem 0 0 0;
+}
+
+/* Dark Mode */
+.dark-mode-icon {
+    width: 35px;
+    height: 35px;
+    margin-right: 2rem;
+}
+
+.dark-mode-icon:hover {
+    cursor: pointer;
+}
+
+.dark-mode {
+    background-color: var(--blackColor2);
+}
+
+.dark-mode .section-title {
+    color: var(--whiteColor);
+}
+
+.dark-mode .card {
+    background-color: var(--greyColor2);
+    border: none;
+    box-shadow: none;
+}
+
+.dark-mode input:not([type="submit"]),
+.dark-mode textarea {
+    background-color: #bbbbbb;
+}
+
+.dark-mode .error {
+    color: #ff0000;
+}
+
+.dark-mode .submenu:hover #cart {
+    background-color: var(--greyColor2);
+}
+
+.dark-mode .submenu:hover #cart th {
+    color: var(--blackColor);
+}
+
 /* Header */
 .header {
     background-color: var(--blackColor);
-    width: 100%;
-
 }
 
 .nav-bar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
     align-items: center;
 }
 
@@ -82,7 +148,8 @@ img {
 }
 
 .nav-links:nth-child(1),
-.nav-links:nth-child(2) {
+.nav-links:nth-child(2),
+.nav-links:nth-child(3) {
     margin-right: 3rem;
 }
 
@@ -116,7 +183,6 @@ img {
 .courses-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 
 .card {
@@ -126,13 +192,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     margin: 0 auto 3rem auto;
     background-color: var(--whiteColor2);
-}
-
-.card-title {
-    margin-top: 0;
 }
 
 .icon-div {
@@ -154,7 +216,7 @@ img {
 }
 
 .button-courses:hover {
-    background-color: #550255;
+    background-color: var(--blueColor2);
     transition: .3s ease;
 }
 
@@ -243,11 +305,76 @@ img {
     margin-top: 3rem;
 }
 
-/* Alert */
-.error {
-    color: var(--redColor);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 1.8rem;
-    margin: 1rem 0 0 0;
+
+/* Courses.html */
+.cart-icon {
+    width: 40px;
+    height: 40px;
 }
+
+.button-cart {
+    margin: 1rem 0 1rem 0;
+    background-color: var(--blueColor);
+    text-transform: none;
+}
+
+.button-cart:hover {
+    background-color: var(--blueColor2);
+    transition: .3s ease;
+}
+
+.submenu {
+    position: relative;
+    list-style: none;
+}
+
+.submenu #cart {
+    display: none;
+}
+
+.submenu:hover #cart {
+    display: block;
+    position: absolute;
+    right: -7rem;
+    top: 100%;
+    z-index: 1;
+    background-color: var(--whiteColor2);
+    padding: 15px;
+    min-height: 300px;
+    min-width: 300px;
+}
+
+.card-list {
+    width: 100%;
+}
+
+tr {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.price-div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.price {
+    text-decoration: line-through;
+    font-size: 18px;
+    background-color: var(--redColor);
+    color: var(--whiteColor);
+    padding: .5rem;
+    border-radius: 3px;
+}
+.actual-price {
+    font-weight: 700;
+    font-size: 22px;
+    background-color: var(--greenColor);
+    color: var(--whiteColor);
+    padding: .5rem;
+    border-radius: 3px;
+}
+
