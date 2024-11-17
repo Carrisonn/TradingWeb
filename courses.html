@@ -37,8 +37,9 @@
                             <ul class="no-margin no-padding">
                                 <li class="submenu">
                                     <img loading="lazy" src="images/cart-icon.svg" class="cart-icon" alt="cart icon">
+                                    
                                     <div id="cart">
-                                        <table id="cart-list" class="card-list">
+                                        <table id="cart-list" class="cart-list">
                                             <thead>
                                                 <tr>
                                                     <th>Nombre</th>
@@ -48,7 +49,11 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-                                        <hr>
+                                        
+                                        <div class="button-cart-div">
+                                            <button id="empty-cart" class="button-cart">Vaciar Carrito</button>
+                                        </div>
+                                        
                                     </div>
                                 </li>
                             </ul>
@@ -59,110 +64,110 @@
         </header>
 
         <main class="container">
-            <section>
+            <section id="list-courses">
                 <h2 class="section-title">Mis Cursos</h2>
 
                 <div class="courses-section">
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/analysis-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/analysis-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Análisis Técnico</h2>
+                            <h2 id="card-title"  class="card-title">Análisis Técnico</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="1">Agregar al carrito</button>
                     </div> <!-- card -->
 
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/operations-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/operations-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Como realizar operaciones</h2>
+                            <h2 id="card-title"  class="card-title">Como Realizar Operaciones</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="2">Agregar al carrito</button>
                     </div> <!-- card -->
 
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/system-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/system-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Sistema EdT</h2>
+                            <h2 id="card-title"  class="card-title">Sistema EdT</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="3">Agregar al carrito</button>
                     </div> <!-- card -->
 
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/manager-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/manager-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Gestión avanzada de riesgos</h2>
+                            <h2 id="card-title" class="card-title">Gestión Avanzada de Riesgos</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="4">Agregar al carrito</button>
                     </div> <!-- card -->
 
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/analysis2-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/analysis2-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Análisis técnico avanzado</h2>
+                            <h2 id="card-title"  class="card-title">Análisis Técnico Avanzado</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="5">Agregar al carrito</button>
                     </div> <!-- card -->
 
                     <div class="card">
                         <div class="icon-div">
-                            <img src="images/finance-icon.svg" alt="icon">
+                            <img loading="lazy" src="images/finance-icon.svg" alt="icon">
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">Apalancamiento financiero</h2>
+                            <h2 id="card-title"  class="card-title">Apalancamiento Financiero</h2>
                             <p class="card-text no-margin">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, voluptate. Explicabo, obcaecati neque illo consectetur adipisicing.</p>
                         </div>
 
                         <div class="price-div">
                             <p class="price no-margin">$100</p>
-                            <span class="actual-price">$15</span>
+                            <span id="#actual-price" class="actual-price">$15</span>
                         </div>
                         
-                        <button class="button button-cart">Agregar al carrito</button>
+                        <button class="button button-card add-cart" data-id="6">Agregar al carrito</button>
                     </div> <!-- card -->
                 </div>
             </section>
