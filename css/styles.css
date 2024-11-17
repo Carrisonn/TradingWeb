@@ -313,13 +313,13 @@ img {
     height: 40px;
 }
 
-.button-cart {
+.button-card {
     margin: 1rem 0 1rem 0;
     background-color: var(--blueColor);
     text-transform: none;
 }
 
-.button-cart:hover {
+.button-card:hover {
     background-color: var(--blueColor2);
     transition: .3s ease;
 }
@@ -345,13 +345,32 @@ img {
     min-width: 300px;
 }
 
-.card-list {
+.button-cart-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.button-cart {
+    text-align: center;
+    color: var(--whiteColor);
+    padding: .7rem;
+    border-radius: .5rem;
+    background-color: var(--redColor);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cart-list {
     width: 100%;
 }
 
 tr {
-    display: flex;
-    justify-content: space-evenly;
+    text-align: center;
+}
+
+td {
+    padding-top: .7rem;
 }
 
 .price-div {
@@ -370,6 +389,7 @@ tr {
     padding: .5rem;
     border-radius: 3px;
 }
+
 .actual-price {
     font-weight: 700;
     font-size: 22px;
