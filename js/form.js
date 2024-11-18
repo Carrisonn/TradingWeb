@@ -137,7 +137,7 @@ function submitForm(event) {
 
         Swal.fire({
             title: "Gracias por contactar conmigo",
-            text: "En breve recibirás llegará un correo con instrucciones",
+            text: "En breve recibirás un correo con instrucciones",
             icon: "success",
             confirmButtonText: "Genial!"
         });
