@@ -1,5 +1,6 @@
 const cart = document.querySelector('#cart');
 const containerCart = document.querySelector('#cart-list tbody');
+const buttonCartDiv = document.querySelector('#button-cart-div');
 const emptyCartBtn = document.querySelector('#empty-cart');
 const listCourses = document.querySelector('#list-courses');
 let cartItems = [];
@@ -14,7 +15,8 @@ function loadEventListeners() {
     emptyCartBtn.addEventListener('click', () => {
         cartItems = [];
 
-        cleanHTML();
+        buttonPay()
+        infoCourseToHTML();
     })
 }
 
@@ -27,7 +29,7 @@ function addCourse(event) {
             icon: "success",
             title: "Añadido al carrito",
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1500,
             background: '#bbbbbb',
             color: '#000000',
             iconColor: '#02a502'
@@ -72,6 +74,7 @@ function deleteCourse(event) {
         cartItems = cartItems.filter( course => course.id !== courseID)
         infoCourseToHTML();
     }
+    buttonPay()
 };
 
 function infoCourseToHTML() {
@@ -91,7 +94,26 @@ function infoCourseToHTML() {
 
         containerCart.appendChild(trow);
     })
+    buttonPay()
 };
+
+function buttonPay() {
+    const existingButtonPay = document.querySelector('.button-cart-pay');
+    
+    if (cartItems.length >= 1) {
+        if (!existingButtonPay) {
+            const buttonPay = document.createElement('button');
+            buttonPay.classList.add('button-cart-pay');
+            buttonPay.textContent = 'Pagar';
+            
+            buttonCartDiv.appendChild(buttonPay);
+        }
+    } else {
+        if (existingButtonPay) {
+            existingButtonPay.remove();
+        }
+    }
+}
 
 function cleanHTML() {
     while(containerCart.firstChild) {
