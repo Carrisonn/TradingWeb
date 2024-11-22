@@ -8,6 +8,7 @@
     --greyColor3: #bbbbbb;
     --yellowColor: #ffc107;
     --redColor: #af0b0b;
+    --redColor2: #810606;
     --blueColor: #00a3cc;
     --blueColor2: #0089ac;
     --greenColor: #02a502;
@@ -69,6 +70,7 @@ img {
     text-align: center;
     border: none;
     cursor: pointer;
+    transition: .3s ease-in-out;
 }
 
 .disabled {
@@ -124,6 +126,14 @@ img {
 
 .dark-mode .submenu:hover #cart th {
     color: var(--blackColor);
+}
+
+.dark-mode .about-me-p {
+    color: var(--whiteColor);
+}
+
+.dark-mode .social-links {
+    color: var(--whiteColor);
 }
 
 /* Header */
@@ -218,7 +228,6 @@ img {
 
 .button-courses:hover {
     background-color: var(--blueColor2);
-    transition: .3s ease;
 }
 
 /* Contact Section */
@@ -360,7 +369,7 @@ img {
     text-align: center;
 }
 
-.button-cart {
+.button-cart-empty {
     text-align: center;
     color: var(--whiteColor);
     padding: .7rem;
@@ -369,6 +378,11 @@ img {
     border: none;
     cursor: pointer;
     width: 100%;
+    transition: .3s ease;
+}
+
+.button-cart-empty:hover {
+    background-color: var(--redColor2);
 }
 
 .button-cart-delete {
@@ -378,6 +392,23 @@ img {
     background-color: var(--redColor);
     border: none;
     cursor: pointer;
+}
+
+.button-cart-pay {
+    text-align: center;
+    color: var(--whiteColor);
+    padding: .7rem;
+    margin-top: 1rem;
+    border-radius: .5rem;
+    background-color: var(--blueColor);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: .3s ease-in-out;
+}
+
+.button-cart-pay:hover {
+    background-color: var(--blueColor2);
 }
 
 .price-div {
@@ -414,5 +445,38 @@ img {
 
 .button-card:hover {
     background-color: var(--blueColor2);
-    transition: .3s ease;
+}
+
+/* About-me.html */
+.about-me-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    gap: 2rem;
+}
+
+.social-links-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.social-links {
+    color: var(--blackColor);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    transition: .3s ease-in-out;
+}
+
+.social-links:hover {
+    transform: translateY(-5px);
+    transition: .3s ease-in-out;
+    border-bottom: 1px solid;
+}
+
+.help-image {
+    border-radius: 1rem;
+    box-shadow: 1px 1px 1px 1px;
 }
