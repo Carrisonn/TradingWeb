@@ -12,6 +12,7 @@
     --blueColor: #00a3cc;
     --blueColor2: #0089ac;
     --greenColor: #02a502;
+    --greenColor2: #04aa04;
 }
 
 html {
@@ -70,7 +71,6 @@ img {
     text-align: center;
     border: none;
     cursor: pointer;
-    transition: .3s ease-in-out;
 }
 
 .disabled {
@@ -84,6 +84,18 @@ img {
     text-transform: uppercase;
     font-size: 1.8rem;
     margin: 1rem 0 0 0;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.visibility {
+    visibility: hidden;
 }
 
 /* Dark Mode */
@@ -378,7 +390,6 @@ img {
     border: none;
     cursor: pointer;
     width: 100%;
-    transition: .3s ease;
 }
 
 .button-cart-empty:hover {
@@ -404,7 +415,6 @@ img {
     border: none;
     cursor: pointer;
     width: 100%;
-    transition: .3s ease-in-out;
 }
 
 .button-cart-pay:hover {
@@ -440,7 +450,6 @@ img {
 .button-card {
     margin: 1rem 0 1rem 0;
     background-color: var(--blueColor);
-    text-transform: none;
 }
 
 .button-card:hover {
@@ -467,16 +476,62 @@ img {
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 700;
-    transition: .3s ease-in-out;
+    transition: .3s ease-in-out; 
 }
 
 .social-links:hover {
     transform: translateY(-5px);
-    transition: .3s ease-in-out;
+    
     border-bottom: 1px solid;
 }
 
 .help-image {
     border-radius: 1rem;
     box-shadow: 1px 1px 1px 1px;
+}
+
+.opinion-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.opinion-div {
+    background-color: var(--greenColor2);
+    border-radius: 2rem;
+    padding: 4rem;
+    width: 50rem;
+}
+
+.opinion-container {
+    display: flex;
+    position: relative;
+}
+
+.quote-mark {
+    filter: invert(100%);
+    position: absolute;
+    top: -2rem;
+}
+
+.opinion {
+    color: var(--whiteColor);
+    font-size: 18px;
+    margin-left: 5rem;
+    padding: 1rem;
+    font-style: italic;
+}
+
+.opinion-name {
+    color: var(--whiteColor);
+    font-size: 18px;
+}
+
+.div-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-page:hover {
+    background-color: var(--blueColor2);
 }
