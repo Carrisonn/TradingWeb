@@ -196,13 +196,12 @@ img {
     margin-top: 1rem;
 }
 
-/* Courses Section */
 .section-title  {
     text-align: center;
     font-size: 3.5rem;
 }
 
-.courses-section {
+.cards-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -326,7 +325,6 @@ img {
     height: 7rem;
     margin-top: 3rem;
 }
-
 
 /* Courses.html */
 .cart-icon {
@@ -481,7 +479,6 @@ img {
 
 .social-links:hover {
     transform: translateY(-5px);
-    
     border-bottom: 1px solid;
 }
 

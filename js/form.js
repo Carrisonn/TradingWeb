@@ -38,14 +38,14 @@ function validate(event) {
     }
 
     if(event.target.id === 'name' && !validateName(event.target.value)) {
-        showAlert('El nombre es demasiado largo o no es válido', event.target.parentElement);
+        showAlert('Nombre demasiado largo o inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         checkFormInfo()
         return
     }
 
     if(event.target.id === 'phone' && !validatePhone(event.target.value)) {
-        showAlert('El número debe de ser de 9 dígitos y debe ser válido', event.target.parentElement);
+        showAlert('Número demasiado corto o inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         checkFormInfo()
         return
@@ -139,7 +139,10 @@ function submitForm(event) {
             title: "Gracias por contactar conmigo",
             text: "En breve recibirás un correo con instrucciones",
             icon: "success",
-            confirmButtonText: "Genial!"
+            confirmButtonText: "Genial!",
+            background: '#bbbbbb',
+            color: '#000000',
+            iconColor: '#02a502'
         });
 
         formObj.name = ''
