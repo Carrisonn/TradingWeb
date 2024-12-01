@@ -12,13 +12,8 @@ function loadEventListeners() {
 
     cart.addEventListener('click', deleteCourse);
 
-    emptyCartBtn.addEventListener('click', () => {
-        cartItems = [];
-
-        buttonPay()
-        infoCourseToHTML();
-    })
-}
+    emptyCartBtn.addEventListener('click', emptyCart);
+};
 
 function addCourse(event) {
     if(event.target.classList.contains('add-cart')) {
@@ -33,7 +28,7 @@ function addCourse(event) {
             background: '#bbbbbb',
             color: '#000000',
             iconColor: '#02a502'
-        });
+        })
         
         readDataCourses(courseSelected);
     }
@@ -71,10 +66,68 @@ function deleteCourse(event) {
     if(event.target.classList.contains('button-cart-delete')) {
         const courseID = event.target.getAttribute('data-id');
 
-        cartItems = cartItems.filter( course => course.id !== courseID)
-        infoCourseToHTML();
+        Swal.fire({
+            title: "¿Estás seguro de que quieres eliminar este artículo?",
+            icon: "warning",
+            showCancelButton: true,
+            iconColor: "#ff902f",
+            confirmButtonColor: "#00a3cc",
+            cancelButtonColor: "#af0b0b",
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "Cancelar",
+            background: '#bbbbbb',
+            color: '#000000',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Articulo eliminado correctamente",
+                    icon: "success",
+                    background: '#bbbbbb',
+                    iconColor: '#02a502',
+                    color: '#000000',
+                    confirmButtonColor: "#00a3cc",
+                    confirmButtonText: "Genial",
+                });
+                
+                cartItems = cartItems.filter( course => course.id !== courseID);
+                infoCourseToHTML();
+                buttonPay();
+            }
+        })
     }
-    buttonPay()
+};
+
+function emptyCart() {
+    if(cartItems.length > 0) {
+        Swal.fire({
+            title: "¿Estás seguro de que quieres vaciar el carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            iconColor: "#ff902f",
+            confirmButtonColor: "#00a3cc",
+            cancelButtonColor: "#af0b0b",
+            confirmButtonText: "Si, vaciar",
+            cancelButtonText: "Cancelar",
+            background: '#bbbbbb',
+            color: '#000000',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Has vaciado el carrito",
+                    icon: "success",
+                    background: '#bbbbbb',
+                    iconColor: '#02a502',
+                    color: '#000000',
+                    confirmButtonColor: "#00a3cc",
+                    confirmButtonText: "Genial",
+                });
+                
+                cartItems = [];
+                buttonPay();
+                infoCourseToHTML();
+            }
+        })
+    }
 };
 
 function infoCourseToHTML() {
@@ -93,8 +146,8 @@ function infoCourseToHTML() {
         `;
 
         containerCart.appendChild(trow);
-    })
-    buttonPay()
+    });
+    buttonPay();
 };
 
 function buttonPay() {
@@ -113,7 +166,7 @@ function buttonPay() {
             existingButtonPay.remove();
         }
     }
-}
+};
 
 function cleanHTML() {
     while(containerCart.firstChild) {
