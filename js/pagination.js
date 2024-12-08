@@ -1,10 +1,9 @@
+/* -- Globals -- */
 let currentStep = 1;
 const totalSteps = 3;
 
 const backButton = document.querySelector('#back-button');
 const nextButton = document.querySelector('#next-button');
-
-visibilityButtons()
 
 backButton.addEventListener('click', () => {
     if(currentStep > 1) {
@@ -22,6 +21,9 @@ nextButton.addEventListener('click', () => {
     }
 });
 
+
+
+/* -- Functions -- */
 function updateOpinions() {
     for( let i = 1; i <= totalSteps; i++ ) {
         const opinionDiv = document.querySelector(`#step-${i}`)
@@ -36,6 +38,7 @@ function updateOpinions() {
     }
 };
 
+visibilityButtons()
 function visibilityButtons() {
     if(currentStep === 1) {
         backButton.classList.add('visibility');
