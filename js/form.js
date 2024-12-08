@@ -1,9 +1,10 @@
+/* -- Globals -- */
 const inputName =  document.querySelector('#name');
 const inputPhone =  document.querySelector('#phone');
 const inputEmail = document.querySelector('#email');
 const inputMessage = document.querySelector('#message');
 const btnSubmit = document.querySelector('#btn-submit');
-const divSpinner = document.querySelector('#div-spinner');
+const divSpinner = document.querySelector('#div-spinner-form');
 const form = document.querySelector('#form');
 
 inputName.addEventListener('blur', validate);
@@ -13,8 +14,10 @@ inputMessage.addEventListener('blur', validateTextArea);
 form.addEventListener('submit', submitForm);
 
 
-window.addEventListener('beforeunload', () => {
+window.addEventListener('load', () => {
     form.reset();
+    formCrypto.reset();
+    checkFormInfo();
 });
 
 
@@ -25,10 +28,7 @@ const formObj = {
     message: ''
 }
 
-
-checkFormInfo();
-
-
+/* -- Functions -- */
 function validate(event) {
     if(event.target.value.trim() === '') {
         showAlert('Este campo no puede ir vacío', event.target.parentElement);
@@ -61,7 +61,7 @@ function validate(event) {
     formObj[event.target.name] = event.target.value.trim().toLowerCase();
     
     checkFormInfo();
-}
+};
 
 function validateTextArea(event) {
     if(event.target.value.length > 400) {
@@ -92,28 +92,6 @@ function validateEmail(email) {
     return result;
 };
 
-function showAlert(message, reference) {
-    cleanAlert(reference);
-
-    const error = document.createElement('p');
-    error.textContent = message;
-    error.classList.add('error');
-
-    reference.appendChild(error);
-
-    setTimeout(() => {
-        error.remove();
-    }, 4000);
-};
-
-function cleanAlert(reference) {
-    const cleanMessage = reference.querySelector('.error');
-
-    if(cleanMessage) {
-        cleanMessage.remove();
-    }
-}
-
 function checkFormInfo() {
     const requiredFields = Object.keys(formObj).filter(key => key !== 'message');
     const allRequiredFilled = requiredFields.every(key => formObj[key] !== '');
@@ -125,7 +103,7 @@ function checkFormInfo() {
         btnSubmit.classList.add('disabled');
         btnSubmit.disabled = true;
     }
-}
+};
 
 function submitForm(event) {
     event.preventDefault();
@@ -153,5 +131,27 @@ function submitForm(event) {
         form.reset()
 
         checkFormInfo();
-    }, 3000);
-}
+    }, 2000);
+};
+
+function showAlert(message, reference) {
+    cleanAlert(reference);
+
+    const error = document.createElement('p');
+    error.textContent = message;
+    error.classList.add('error');
+
+    reference.appendChild(error);
+
+    setTimeout(() => {
+        error.remove();
+    }, 4000);
+};
+
+function cleanAlert(reference) {
+    const cleanMessage = reference.querySelector('.error');
+
+    if(cleanMessage) {
+        cleanMessage.remove();
+    }
+};
