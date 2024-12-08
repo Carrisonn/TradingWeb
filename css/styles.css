@@ -47,6 +47,10 @@ img {
     max-width: 100%;
 }
 
+p {
+    font-size: 1.8rem;
+}
+
 .no-margin {
     margin: 0;
 }
@@ -55,9 +59,8 @@ img {
     padding: 0;
 }
 
-.text-left {
-    text-align: left;
-    margin-left: 1rem;
+.text-center {
+    text-align: center;
 }
 
 .button {
@@ -73,6 +76,10 @@ img {
     cursor: pointer;
 }
 
+.button-div-margin {
+    margin: 2rem 0 2rem 0
+}
+
 .disabled {
     cursor: not-allowed;
     opacity: .6;
@@ -86,6 +93,17 @@ img {
     margin: 1rem 0 0 0;
 }
 
+.error-crypto {
+    color: var(--whiteColor);
+    background-color: var(--redColor);
+    border-radius: .5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    padding: 1rem;
+    text-align: center;
+}
+
 .display-none {
     display: none;
 }
@@ -96,6 +114,10 @@ img {
 
 .visibility {
     visibility: hidden;
+}
+
+.font-weight {
+    font-weight: 700;
 }
 
 /* Dark Mode */
@@ -118,18 +140,34 @@ img {
 }
 
 .dark-mode .card {
-    background-color: var(--greyColor2);
+    background-color: var(--greyColor3);
     border: none;
     box-shadow: none;
 }
 
+.dark-mode .crypto-text {
+    color: var(--whiteColor);
+}
+
+.dark-mode .select-option {
+    background-color: var(--greyColor3);
+}
+
+.dark-mode label {
+    color: var(--whiteColor);
+}
+
 .dark-mode input:not([type="submit"]),
 .dark-mode textarea {
-    background-color: #bbbbbb;
+    background-color: var(--greyColor3);
 }
 
 .dark-mode .error {
     color: var(--redColor);
+}
+
+.dark-mode .results {
+    background-color: var(--greyColor3);
 }
 
 .dark-mode .submenu:hover #cart {
@@ -196,6 +234,7 @@ img {
     margin-top: 1rem;
 }
 
+/* Courses Section */
 .section-title  {
     text-align: center;
     font-size: 3.5rem;
@@ -214,7 +253,7 @@ img {
     flex-direction: column;
     align-items: center;
     width: calc(100% - 60px);
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 2rem auto;
     background-color: var(--whiteColor2);
 }
 
@@ -233,13 +272,55 @@ img {
     margin-top: 0;
 }
 
-.button-courses-div {
-    margin-bottom: 4rem;
-}
-
-.button-courses:hover {
+.button-hover:hover {
     background-color: var(--blueColor2);
 }
+
+/* Crypto Section */
+.calculate-crypto {
+    width: 40rem;
+    margin: 3rem auto 0 auto;
+}
+
+.coin-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.crypto-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-coin {
+    margin-bottom: .7rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.label-crypto {
+    margin: 3rem 0 .7rem 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.select-option {
+    padding: 1rem;
+    border: 1px solid var(--greyColor3);
+    border-radius: .5rem;
+}
+
+.results {
+    background-color: var(--whiteColor2);
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.p-results {
+    padding: .5rem;
+}
+
 
 /* Contact Section */
 .contact-title {
