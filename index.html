@@ -70,8 +70,42 @@
                     </div>
                 </div>
 
-                <div class="button-div button-courses-div">
-                    <a href="courses.html" class="button button-courses">Ver Cursos</a>
+                <div class=" text-center button-div-margin">
+                    <a href="courses.html" class="button button-hover">Ver Cursos</a>
+                </div>
+            </section>
+
+            <section>
+                <hr>
+
+                <h2 class="section-title">¿Te interesan las criptomonedas?</h2>
+                <p class="no-margin text-center crypto-text"> Aqui puedes ver información de las 10 criptomonedas mas populares actualmente</p>
+
+                <div class="calculate-crypto">
+                    <form id="form-crypto">
+                        <div class="coin-div">
+                            <label class="label-coin" for="coin">Elige una Moneda</label>
+                            <select name="coin" id="coin" class="select-option">
+                                <option value="" disabled selected>-- Selecciona una moneda --</option>
+                                <option value="USD">Dolar Estadounidense</option>
+                                <option value="EUR">Euros</option>
+                                <option value="GBP">Libras</option>
+                            </select>
+                        </div>
+
+                        <div class="crypto-div">
+                            <label class="label-crypto" for="crypto">Elige una Criptomoneda</label>
+                            <select name="crypto" id="crypto" class="select-option">
+                                <option value="" disabled selected>-- Selecciona una criptomoneda --</option>
+                            </select>
+                        </div>
+
+                        <div class="text-center button-div-margin">
+                            <input form="form-crypto" type="submit" value="Ver información" class="button button-hover">
+
+                            <div id="results" class="results display-none"></div>
+                        </div>
+                    </form> 
                 </div>
             </section>
 
@@ -102,10 +136,10 @@
                         </div>
 
                         <div class="button-div">
-                            <input type="submit" class="button" id="btn-submit" value="Enviar">
+                            <input form="form" type="submit" class="button" id="btn-submit" value="Enviar">
                         </div>
 
-                        <div id="div-spinner" class="div-spinner hide-spinner">
+                        <div id="div-spinner-form" class="div-spinner hide-spinner">
                             <span class="loader"></span>
                         </div>
                         
@@ -119,6 +153,7 @@
         </footer>
 
         <script src="js/dark-mode.js"></script>
+        <script src="js/crypto.js"></script>
         <script src="js/form.js"></script>
         <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     </body>
