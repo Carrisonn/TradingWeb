@@ -1,3 +1,4 @@
+/* -- Globals -- */
 const cart = document.querySelector('#cart');
 const containerCart = document.querySelector('#cart-list tbody');
 const buttonCartDiv = document.querySelector('#button-cart-div');
@@ -6,6 +7,7 @@ const listCourses = document.querySelector('#list-courses');
 let cartItems = [];
 
 
+/* -- Functions -- */
 loadEventListeners();
 function loadEventListeners() {
     listCourses.addEventListener('click', addCourse);
