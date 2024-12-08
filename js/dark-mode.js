@@ -1,7 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    darkMode();
-});
+darkMode();
 
 function darkMode() {
     const btnDarkMode = document.querySelector('.dark-mode-icon');
@@ -20,4 +17,4 @@ function darkMode() {
             localStorage.setItem('darkMode', 'disabled');
         }
     })
-}
+};
