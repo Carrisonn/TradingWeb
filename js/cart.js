@@ -7,16 +7,12 @@ const listCourses = document.querySelector('#list-courses');
 let cartItems = [];
 
 
+listCourses.addEventListener('click', addCourse);
+cart.addEventListener('click', deleteCourse);
+emptyCartBtn.addEventListener('click', emptyCart);
+
+
 /* -- Functions -- */
-loadEventListeners();
-function loadEventListeners() {
-    listCourses.addEventListener('click', addCourse);
-
-    cart.addEventListener('click', deleteCourse);
-
-    emptyCartBtn.addEventListener('click', emptyCart);
-};
-
 function addCourse(event) {
     if(event.target.classList.contains('add-cart')) {
         const courseSelected = event.target.parentElement;
@@ -160,6 +156,7 @@ function buttonPay() {
             const buttonPay = document.createElement('button');
             buttonPay.classList.add('button-cart-pay');
             buttonPay.textContent = 'Pagar';
+            buttonPay.onclick = () => window.location.href = 'payment.html';
             
             buttonCartDiv.appendChild(buttonPay);
         }
