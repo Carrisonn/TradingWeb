@@ -7,6 +7,7 @@ const btnSubmit = document.querySelector('#btn-submit');
 const divSpinner = document.querySelector('#div-spinner-form');
 const form = document.querySelector('#form');
 
+
 inputName.addEventListener('blur', validate);
 inputPhone.addEventListener('blur', validate);
 inputEmail.addEventListener('blur', validate);
@@ -16,7 +17,7 @@ form.addEventListener('submit', submitForm);
 
 window.addEventListener('load', () => {
     form.reset();
-    formCrypto.reset();
+    formCrypto.reset(); // crypto.js
     checkFormInfo();
 });
 
@@ -28,6 +29,7 @@ const formObj = {
     message: ''
 }
 
+
 /* -- Functions -- */
 function validate(event) {
     if(event.target.value.trim() === '') {
@@ -38,8 +40,9 @@ function validate(event) {
     }
 
     if(event.target.id === 'name' && !validateName(event.target.value)) {
-        showAlert('Nombre demasiado largo o inválido', event.target.parentElement);
+        showAlert('Nombre inválido', event.target.parentElement);
         formObj[event.target.name] = '';
+        event.target.value = '';
         checkFormInfo()
         return
     }
@@ -47,6 +50,7 @@ function validate(event) {
     if(event.target.id === 'phone' && !validatePhone(event.target.value)) {
         showAlert('Número demasiado corto o inválido', event.target.parentElement);
         formObj[event.target.name] = '';
+        event.target.value = '';
         checkFormInfo()
         return
     }
@@ -54,12 +58,12 @@ function validate(event) {
     if(event.target.id === 'email' && !validateEmail(event.target.value)) {
         showAlert('Email no válido', event.target.parentElement)
         formObj[event.target.name] = '';
+        event.target.value = '';
         checkFormInfo()
         return
     }
 
     formObj[event.target.name] = event.target.value.trim().toLowerCase();
-    
     checkFormInfo();
 };
 
