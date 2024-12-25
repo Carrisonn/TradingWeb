@@ -1,3 +1,4 @@
+/* Global */
 :root {
     --blackColor: #000000;
     --blackColor2: #101010;
@@ -11,6 +12,7 @@
     --redColor2: #810606;
     --blueColor: #00a3cc;
     --blueColor2: #0089ac;
+    --blueColor3: #2d2dff;
     --greenColor: #02a502;
     --greenColor2: #04aa04;
 }
@@ -27,9 +29,11 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
 }
 
-/* Global */
 .container {
     width: min(90%, 120rem);
     margin: 0 auto;
@@ -69,7 +73,7 @@ p {
     padding: 1rem 3rem;
     font-size: 2rem;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
     border-radius: .5rem;
     text-align: center;
     border: none;
@@ -247,7 +251,7 @@ p {
 
 .card {
     border: 1px solid var(--greyColor);
-    border-radius: 5px;
+    border-radius: .5rem;
     box-shadow: 0 1px 1px 2px var(--greyColor);
     display: flex;
     flex-direction: column;
@@ -330,7 +334,7 @@ p {
 
 .form {
     width: min(60rem, 100%);
-    border: 1px solid var(--greyColor);
+    box-shadow: 1px 1px 1px 2px var(--greyColor);
     margin: 0 auto;
     padding: 2rem;
     border-radius: 1rem;
@@ -612,4 +616,26 @@ p {
 
 .button-page:hover {
     background-color: var(--blueColor2);
+}
+
+/* Payment.html */
+.field-terms {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2rem;
+    color: var(--whiteColor);
+}
+
+.field-terms label {
+    margin-left: 1rem;
+}
+
+.terms-link {
+    color: var(--blueColor3);
+}
+
+.terms-link:hover {
+    text-decoration: underline;
 }
