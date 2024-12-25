@@ -24,6 +24,7 @@ const getCryptos = cryptos => new Promise( resolve => {
     resolve(cryptos);
 });
 
+
 /* -- Functions -- */
 function checkCryptos() {
     const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
@@ -75,11 +76,11 @@ function checkAPI() {
         .then(result => showCryptoInfo(result.DISPLAY[crypto][coin]))
 };
 
-function showCryptoInfo(cyrptoInfo) {
+function showCryptoInfo(cryptoInfo) {
 
     cleanAlertCrypto();
 
-    const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE, MARKET } = cyrptoInfo;
+    const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE, MARKET } = cryptoInfo;
 
     const price = document.createElement('p');
     price.classList.add('p-results','no-margin');
