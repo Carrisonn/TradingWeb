@@ -20,6 +20,7 @@ form.addEventListener('submit', submitForm);
 
 
 window.addEventListener('load', () => {
+    isAuth();
     form.reset();
 });
 
@@ -40,6 +41,12 @@ const paymentObj = {
 
 
 /* -- Functions -- */
+function isAuth() {
+    const tokenExist = localStorage.getItem('paymentToken');
+
+    tokenExist === null ? window.location.href = 'index.html' : null;
+};
+
 function validate(event) {
     if(event.target.value.trim() === '') {
         showAlert('Este campo no puede ir vacío', event.target.parentElement);
@@ -205,8 +212,13 @@ function submitForm(event) {
             confirmButtonText: "Genial!",
             background: '#bbbbbb',
             color: '#000000',
-            iconColor: '#02a502'
-        });
+            iconColor: '#02a502',
+            allowOutsideClick: false
+        }).then(result => {
+            if(result.isConfirmed) {
+                window.location.href = 'index.html';
+            }
+        })
 
         paymentObj.name = ''
         paymentObj.email = ''
@@ -215,9 +227,7 @@ function submitForm(event) {
         paymentObj.expirationDate = ''
         paymentObj.terms = false
 
-        form.reset();
-
-        checkPaymentInfo();
+        localStorage.removeItem('authToken');
     }, 2000);
 };
 
