@@ -124,7 +124,8 @@ function submitForm(event) {
             confirmButtonText: "Genial!",
             background: '#bbbbbb',
             color: '#000000',
-            iconColor: '#02a502'
+            iconColor: '#02a502',
+            allowOutsideClick: false
         });
 
         formObj.name = ''
