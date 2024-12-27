@@ -75,6 +75,7 @@ function deleteCourse(event) {
             cancelButtonText: "Cancelar",
             background: '#bbbbbb',
             color: '#000000',
+            allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -85,6 +86,7 @@ function deleteCourse(event) {
                     color: '#000000',
                     confirmButtonColor: "#00a3cc",
                     confirmButtonText: "Genial",
+                    allowOutsideClick: false
                 });
                 
                 cartItems = cartItems.filter( course => course.id !== courseID);
@@ -108,6 +110,7 @@ function emptyCart() {
             cancelButtonText: "Cancelar",
             background: '#bbbbbb',
             color: '#000000',
+            allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -118,6 +121,7 @@ function emptyCart() {
                     color: '#000000',
                     confirmButtonColor: "#00a3cc",
                     confirmButtonText: "Genial",
+                    allowOutsideClick: false
                 });
                 
                 cartItems = [];
@@ -156,7 +160,7 @@ function buttonPay() {
             const buttonPay = document.createElement('button');
             buttonPay.classList.add('button-cart-pay');
             buttonPay.textContent = 'Pagar';
-            buttonPay.onclick = () => window.location.href = 'payment.html';
+            buttonPay.onclick =  tokenToStorage;
             
             buttonCartDiv.appendChild(buttonPay);
         }
@@ -165,6 +169,14 @@ function buttonPay() {
             existingButtonPay.remove();
         }
     }
+};
+
+function tokenToStorage() {
+    const token = new Date().getTime();
+
+    localStorage.setItem('paymentToken', token);
+
+    window.location.href = 'payment.html';
 };
 
 function cleanHTML() {
