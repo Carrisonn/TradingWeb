@@ -1,4 +1,4 @@
-/* Global */
+/* -- Global -- */
 :root {
     --blackColor: #000000;
     --blackColor2: #101010;
@@ -124,7 +124,7 @@ p {
     font-weight: 700;
 }
 
-/* Dark Mode */
+/* -- Dark Mode -- */ 
 .dark-mode-icon {
     width: 35px;
     height: 35px;
@@ -190,7 +190,7 @@ p {
     color: var(--whiteColor);
 }
 
-/* Header */
+/* -- header -- */
 .header {
     background-color: var(--blackColor);
 }
@@ -199,6 +199,14 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.logo {
+    height: 7rem;
+}
+
+.logo img {
+    height: 100%;
 }
 
 .nav-container {
@@ -238,7 +246,7 @@ p {
     margin-top: 1rem;
 }
 
-/* Courses Section */
+/* -- info courses section -- */
 .section-title  {
     text-align: center;
     font-size: 3.5rem;
@@ -280,7 +288,7 @@ p {
     background-color: var(--blueColor2);
 }
 
-/* Crypto Section */
+/* -- crypto section -- */
 .calculate-crypto {
     width: 40rem;
     margin: 3rem auto 0 auto;
@@ -326,7 +334,7 @@ p {
 }
 
 
-/* Contact Section */
+/* -- contact section -- */
 .contact-title {
     text-align: center;
     font-size: 3.5rem;
@@ -400,7 +408,7 @@ p {
     margin-top: 2rem;
 }
 
-/* Footer */
+/* -- footer -- */
 .footer {
     background-color: var(--blackColor);
     color: var(--whiteColor);
@@ -411,7 +419,15 @@ p {
     margin-top: 3rem;
 }
 
-/* Courses.html */
+.footer-link {
+    color: var(--whiteColor);
+}
+
+.footer-link:hover {
+    border-bottom: 1px solid var(--whiteColor);
+}
+
+/* -- courses.html -- */
 .cart-icon {
     width: 40px;
     height: 40px;
@@ -539,7 +555,7 @@ p {
     background-color: var(--blueColor2);
 }
 
-/* About-me.html */
+/* -- about-me.html -- */
 .about-me-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -618,7 +634,16 @@ p {
     background-color: var(--blueColor2);
 }
 
-/* Payment.html */
+/* -- payment.html -- */
+.results-courses {
+    width: 35rem;
+    margin: 3rem auto 0 auto;
+    background-color: var(--whiteColor2);
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
 .field-terms {
     display: flex;
     flex-direction: row-reverse;
@@ -638,4 +663,23 @@ p {
 
 .terms-link:hover {
     text-decoration: underline;
+}
+
+.btn-payment-div {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+
+.btn-payment-cancel {
+    background-color: var(--redColor);
+    color: var(--whiteColor);
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: .5rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
