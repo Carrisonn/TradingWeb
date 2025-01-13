@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Página web sobre trading">
+        <link rel="icon" href="images/logoProfitLab.avif" type="image/avif">
         <title>Cursos - Carrison</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,7 @@
             <div class="container">
                 <div class="nav-bar">
                     <a href="index.html" class="logo">
-                        <img loading="lazy" src="images/logo.jpg" alt="Logo image" title="Profit Lab Icon">
+                        <img loading="lazy" src="images/logoProfitLab.avif" alt="Logo Profit Lab" title="Profit Lab Icon">
                     </a>
 
                     <div class="nav-container">
@@ -39,55 +40,64 @@
         </header>
 
         <main class="container">
-            <h1 class="section-title">Pasarela de Pago</h1>
+            <section>
+                <h1 class="section-title">Resumen</h1>
 
-            <form id="form" class="form">
-                <fieldset>
-                    <legend>Rellena todos los campos para realizar el pago</legend>
-                
-                    <div class="field">
-                        <label for="name">Nombre <span>*</span></label>
-                        <input type="text" name="name" id="name" maxlength="40" placeholder="Tu Nombre" class="input-text" required>
-                    </div>
+                <div id="user-courses-list" class="results-courses text-center"></div>
+            </section>
 
-                    <div class="field">
-                        <label for="email">Email <span>*</span></label>
-                        <input type="email" name="email" id="email" placeholder="Tu Email" class="input-text" required>
-                    </div>
+            <section>
+                <h2 class="section-title">Pasarela de pago</h2>
 
-                    <div class="field">
-                        <label for="credit-card">Tarjeta de Crédito/Débito <span>*</span></label>
-                        <input type="text" name="creditCard" id="credit-card" maxlength="16" pattern="\d{13,16}" placeholder="Tu Número de Tarjeta" class="input-text" required>
-                    </div>
+                <form id="form" class="form">
+                    <fieldset>
+                        <legend>Rellena todos los campos para realizar el pago</legend>
+                    
+                        <div class="field">
+                            <label for="name">Nombre <span>*</span></label>
+                            <input type="text" name="name" id="name" maxlength="40" placeholder="Tu Nombre" class="input-text" required>
+                        </div>
 
-                    <div class="field">
-                        <label for="cvv">CVV <span>*</span></label>
-                        <input type="text" name="cvv" id="cvv" maxlength="4" placeholder="Tu CVV" class="input-text" required >
-                    </div>
+                        <div class="field">
+                            <label for="email">Email <span>*</span></label>
+                            <input type="email" name="email" id="email" placeholder="Tu Email" class="input-text" required>
+                        </div>
 
-                    <div class="field">
-                        <label for="expiration-date">Fecha de Expiración <span>*</span></label>
-                        <input type="month" name="expirationDate" id="expiration-date" maxlength="6" placeholder="AAAA/MM" class="input-text" required >
-                    </div>
+                        <div class="field">
+                            <label for="credit-card">Tarjeta de Crédito/Débito <span>*</span></label>
+                            <input type="text" name="creditCard" id="credit-card" maxlength="16" pattern="\d{13,16}" placeholder="Tu Número de Tarjeta" class="input-text" required>
+                        </div>
 
-                    <div class="field-terms">
-                        <label for="terms">He leído y acepto los <a href="#" class="terms-link">Términos y Condiciones</a></label>
-                        <input type="checkbox" name="terms" id="terms" required>
-                    </div>
+                        <div class="field">
+                            <label for="cvv">CVV <span>*</span></label>
+                            <input type="text" name="cvv" id="cvv" maxlength="4" placeholder="Tu CVV" class="input-text" required >
+                        </div>
 
-                    <div class="button-div">
-                        <input form="form" type="submit" class="button disabled" id="btn-submit" value="Pagar" disabled>
-                    </div>
+                        <div class="field">
+                            <label for="expiration-date">Fecha de Expiración <span>*</span></label>
+                            <input type="month" name="expirationDate" id="expiration-date" maxlength="6" placeholder="AAAA/MM" class="input-text" required >
+                        </div>
 
-                    <div id="div-spinner" class="div-spinner hide-spinner">
-                        <span class="loader"></span>
-                    </div>
-                </fieldset>
-            </form>
+                        <div class="field-terms">
+                            <label for="terms">He leído y acepto los <a href="#" class="terms-link">Términos y Condiciones</a></label>
+                            <input type="checkbox" name="terms" id="terms" required>
+                        </div>
+
+                        <div class="btn-payment-div">
+                            <input form="form" type="submit" class="button disabled" id="btn-submit" value="Pagar" disabled>
+                            <button id="btn-payment-cancel" class="btn-payment-cancel">Cancelar</button>
+                        </div>
+
+                        <div id="div-spinner" class="div-spinner hide-spinner">
+                            <span class="loader"></span>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
         </main>
 
         <footer class="footer">
-            <p>Made it by Carrison.</p>
+            <p>Made it with ❤️ by <a href="https://x.com/Carrisonnnn" target="_blank" class="footer-link">Carrison</a></p>
         </footer>
 
         <script src="js/dark-mode.js"></script>
