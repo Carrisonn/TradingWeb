@@ -1,10 +1,12 @@
 /* -- Globals -- */
+const userCoursesList = document.querySelector('#user-courses-list');
 const inputName =  document.querySelector('#name');
 const inputEmail = document.querySelector('#email');
 const inputCreditCard = document.querySelector('#credit-card');
 const inputCVV = document.querySelector('#cvv');
 const inputExpirationDate = document.querySelector('#expiration-date');
 const inputTerms = document.querySelector('#terms');
+const btnPaymentCancel = document.querySelector('#btn-payment-cancel');
 const btnSubmit = document.querySelector('#btn-submit');
 const divSpinner = document.querySelector('#div-spinner');
 const form = document.querySelector('#form');
@@ -16,12 +18,15 @@ inputCreditCard.addEventListener('blur', validate);
 inputCVV.addEventListener('blur', validate);
 inputExpirationDate.addEventListener('blur', validate);
 inputTerms.addEventListener('click', validate);
+btnPaymentCancel.addEventListener('click', paymentCancel);
 form.addEventListener('submit', submitForm);
 
 
 window.addEventListener('load', () => {
     isAuth();
+    showCartItems();
     form.reset();
+    checkPaymentInfo();
 });
 
 
@@ -45,6 +50,35 @@ function isAuth() {
     const tokenExist = localStorage.getItem('paymentToken');
 
     tokenExist === null ? window.location.href = 'index.html' : null;
+};
+
+function showCartItems() {
+    const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems'));
+    
+    cartItemsFromStorage.forEach( course => {
+        const { title, quantity, price } = course;
+
+        const titleCourse = document.createElement('p');
+        titleCourse.classList.add('p-results', 'no-margin');
+        titleCourse.innerHTML = `Curso: <span class="font-weight">${title}</span>`;
+
+        const priceCourse = document.createElement('p');
+        priceCourse.classList.add('p-results', 'no-margin');
+        priceCourse.innerHTML = `Precio por curso: <span class="font-weight">${price}</span>`;
+
+        const quantityCourse = document.createElement('p');
+        quantityCourse.classList.add('p-results', 'no-margin');
+        quantityCourse.innerHTML = `Cantidad: <span class="font-weight">${quantity}</span>`;
+
+        userCoursesList.appendChild(titleCourse);
+        userCoursesList.appendChild(priceCourse);
+        userCoursesList.appendChild(quantityCourse);
+
+        if(cartItemsFromStorage.length > 1) {
+            const hr = document.createElement('hr');
+            userCoursesList.appendChild(hr);
+        }
+    })
 };
 
 function validate(event) {
@@ -142,7 +176,7 @@ function validateExpirationDate(event) {
         event.target.value = '';
         checkPaymentInfo();
         return;
-    }
+    } 
 
     if(event.target.value.length === 7) {
         if(event.target.value < `${actualYear}/${actualMonth}`) {
@@ -216,19 +250,43 @@ function submitForm(event) {
             allowOutsideClick: false
         }).then(result => {
             if(result.isConfirmed) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('cartItems');
+                
+                paymentObj.name = ''
+                paymentObj.email = ''
+                paymentObj.creditCard = ''
+                paymentObj.cvv = ''
+                paymentObj.expirationDate = ''
+                paymentObj.terms = false
+
                 window.location.href = 'index.html';
             }
         })
-
-        paymentObj.name = ''
-        paymentObj.email = ''
-        paymentObj.creditCard = ''
-        paymentObj.cvv = ''
-        paymentObj.expirationDate = ''
-        paymentObj.terms = false
-
-        localStorage.removeItem('authToken');
     }, 2000);
+};
+
+function paymentCancel(event) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: "¿Estás seguro de que quieres cancelar la transacción?",
+        text: "Tus cursos se borrarán del carrito",
+        icon: "warning",
+        showCancelButton: true,
+        iconColor: "#ff902f",
+        confirmButtonColor: "#00a3cc",
+        cancelButtonColor: "#af0b0b",
+        confirmButtonText: "Sí, cancelar",
+        cancelButtonText: "Atrás",
+        background: '#bbbbbb',
+        color: '#000000',
+        allowOutsideClick: false
+    }).then((result) => {
+        if(result.isConfirmed) {
+            window.location.href = 'index.html';
+        }
+    })
 };
 
 function showAlert(message, reference) {
