@@ -18,6 +18,8 @@ form.addEventListener('submit', submitForm);
 window.addEventListener('load', () => {
     form.reset();
     formCrypto.reset(); // crypto.js
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentToken');
     checkFormInfo();
 });
 
