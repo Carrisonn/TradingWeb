@@ -11,6 +11,11 @@ listCourses.addEventListener('click', addCourse);
 cart.addEventListener('click', deleteCourse);
 emptyCartBtn.addEventListener('click', emptyCart);
 
+window.addEventListener('load', () => {
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentToken');
+})
+
 
 /* -- Functions -- */
 function addCourse(event) {
@@ -52,9 +57,11 @@ function readDataCourses(courseSelected) {
             }
         })
         cartItems = [...courses];
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
         
     } else {
         cartItems = [...cartItems, infoCourse];
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
     infoCourseToHTML();
