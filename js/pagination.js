@@ -21,6 +21,12 @@ nextButton.addEventListener('click', () => {
     }
 });
 
+window.addEventListener('load', () => {
+    visibilityButtons();
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentToken');
+})
+
 
 
 /* -- Functions -- */
@@ -38,7 +44,6 @@ function updateOpinions() {
     }
 };
 
-visibilityButtons()
 function visibilityButtons() {
     if(currentStep === 1) {
         backButton.classList.add('visibility');
