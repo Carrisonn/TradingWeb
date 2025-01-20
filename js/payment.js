@@ -54,6 +54,7 @@ function isAuth() {
 
 function showCartItems() {
     const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems'));
+    let totalPrice = 0;
     
     cartItemsFromStorage.forEach( course => {
         const { title, quantity, price } = course;
@@ -74,11 +75,20 @@ function showCartItems() {
         userCoursesList.appendChild(priceCourse);
         userCoursesList.appendChild(quantityCourse);
 
-        if(cartItemsFromStorage.length > 1) {
+        const priceToNumber = Number(price.slice(1));
+        totalPrice += priceToNumber * quantity;
+
+        if(cartItemsFromStorage.length >= 1) {
             const hr = document.createElement('hr');
             userCoursesList.appendChild(hr);
         }
-    })
+    });
+
+    const totalPriceResum = document.createElement('p');
+    totalPriceResum.classList.add('p-results', 'no-margin');
+    totalPriceResum.innerHTML = `Total a pagar: <span class="font-weight">$${totalPrice}</span>`;
+
+    userCoursesList.appendChild(totalPriceResum);
 };
 
 function validate(event) {
