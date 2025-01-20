@@ -27,7 +27,7 @@ function addCourse(event) {
             icon: "success",
             title: "Añadido al carrito",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1200,
             background: '#bbbbbb',
             color: '#000000',
             iconColor: '#02a502'
