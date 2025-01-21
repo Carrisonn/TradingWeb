@@ -1,4 +1,7 @@
 /* -- Globals -- */
+
+import { darkMode } from "./helper-func.js";
+
 let currentStep = 1;
 const totalSteps = 3;
 
@@ -22,6 +25,7 @@ nextButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
+    darkMode();
     visibilityButtons();
     localStorage.removeItem('cartItems');
     localStorage.removeItem('paymentToken');
