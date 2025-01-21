@@ -1,4 +1,9 @@
 /* -- Globals -- */
+
+import { darkMode } from "./helper-func.js";
+import { showAlert } from "./helper-func.js";
+import { cleanAlert } from "./helper-func.js";
+
 const userCoursesList = document.querySelector('#user-courses-list');
 const inputName =  document.querySelector('#name');
 const inputEmail = document.querySelector('#email');
@@ -25,6 +30,7 @@ form.addEventListener('submit', submitForm);
 window.addEventListener('load', () => {
     isAuth();
     showCartItems();
+    darkMode();
     form.reset();
     checkPaymentInfo();
 });
@@ -297,27 +303,4 @@ function paymentCancel(event) {
             window.location.href = 'index.html';
         }
     })
-};
-
-function showAlert(message, reference) {
-
-    cleanAlert(reference);
-
-    const error = document.createElement('p');
-    error.textContent = message;
-    error.classList.add('error');
-
-    reference.appendChild(error);
-
-    setTimeout(() => {
-        error.remove();
-    }, 4000);
-};
-
-function cleanAlert(reference) {
-    const cleanMessage = reference.querySelector('.error');
-
-    if(cleanMessage) {
-        cleanMessage.remove();
-    }
 };
