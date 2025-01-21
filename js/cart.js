@@ -1,4 +1,7 @@
 /* -- Globals -- */
+
+import { darkMode } from './helper-func.js';
+
 const cart = document.querySelector('#cart');
 const containerCart = document.querySelector('#cart-list tbody');
 const buttonCartDiv = document.querySelector('#button-cart-div');
@@ -12,6 +15,7 @@ cart.addEventListener('click', deleteCourse);
 emptyCartBtn.addEventListener('click', emptyCart);
 
 window.addEventListener('load', () => {
+    darkMode();
     localStorage.removeItem('cartItems');
     localStorage.removeItem('paymentToken');
 })
