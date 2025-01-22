@@ -266,8 +266,8 @@ function submitForm(event) {
             allowOutsideClick: false
         }).then(result => {
             if(result.isConfirmed) {
-                localStorage.removeItem('authToken');
                 localStorage.removeItem('cartItems');
+                localStorage.removeItem('paymentToken');
                 
                 paymentObj.name = ''
                 paymentObj.email = ''
