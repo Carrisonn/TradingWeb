@@ -1,8 +1,17 @@
 /* -- Globals -- */
+document.addEventListener('DOMContentLoaded', () => {
+    checkCryptos();
+});
+
+
 const cryptoSelect = document.querySelector('#crypto');
 const coinSelect = document.querySelector('#coin');
 const formCrypto = document.querySelector('#form-crypto');
 const resultsDiv = document.querySelector('#results');
+
+cryptoSelect.addEventListener('change', readValue);
+coinSelect.addEventListener('change', readValue);
+formCrypto.addEventListener('submit', submitFormCrypto);
 
 
 const objSearch = {
@@ -11,39 +20,30 @@ const objSearch = {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    checkCryptos();
-
-    cryptoSelect.addEventListener('change', readValue);
-    coinSelect.addEventListener('change', readValue);
-
-    formCrypto.addEventListener('submit', submitFormCrypto);
-});
-
+/* -- Functions -- */
 const getCryptos = cryptos => new Promise( resolve => {
     resolve(cryptos);
 });
 
-
-/* -- Functions -- */
 function checkCryptos() {
     const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
-
-    fetch(url)
-        .then( response => response.json() )
-        .then( result => getCryptos(result.Data) )
-        .then( cryptos => renderCryptos(cryptos) )
+    try {
+        fetch(url)
+            .then( response => response.json() )
+            .then( result => getCryptos(result.Data) )
+            .then( cryptos => renderCryptos(cryptos) )
+    } catch (error) {
+        console.log(error);
+        showAlertCrypto('Hubo un error al cargar la lista de criptomonedas');
+    }
 };
 
 function renderCryptos(cryptos) {
     cryptos.forEach(crypto => {
-        
-        const { FullName, Name,} = crypto.CoinInfo
-        
+        const { FullName, Name,} = crypto.CoinInfo;
         const option = document.createElement('option');
         option.value = Name;
         option.textContent = FullName;
-
         cryptoSelect.appendChild(option);
     });
 };
@@ -56,7 +56,6 @@ function submitFormCrypto(event) {
     event.preventDefault();
 
     const { coin, crypto } = objSearch;
-
     if(coin === '' || crypto === '') {
         showAlertCrypto('Ambos campos son requeridos');
         return;
@@ -66,19 +65,20 @@ function submitFormCrypto(event) {
 };
 
 function checkAPI() {
-
     const { coin, crypto } = objSearch;
-
-    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${coin}`; 
-
-    fetch(url)
-        .then(response => response.json())
-        .then(result => showCryptoInfo(result.DISPLAY[crypto][coin]))
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${coin}`;
+    try {
+        fetch(url)
+            .then(response => response.json())
+            .then(result => showCryptoInfo(result.DISPLAY[crypto][coin]))
+    } catch (error) {
+        console.log(error);
+        showAlertCrypto('Hubo un error al obtener la información');
+    }
 };
 
 function showCryptoInfo(cryptoInfo) {
-
-    cleanAlertCrypto();
+    removeResults();
 
     const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE, MARKET } = cryptoInfo;
 
@@ -116,23 +116,20 @@ function showCryptoInfo(cryptoInfo) {
 };
 
 function showAlertCrypto(message) {
-
-    const errorExist = document.querySelector('.error-crypto');
-
+    const errorExist = document.querySelector('.error.crypto');
     if(!errorExist) {
         const error = document.createElement('p');
         error.textContent = message;
         error.classList.add('error-crypto', 'no-margin');
-
         formCrypto.appendChild(error);
 
         setTimeout(() => {
             error.remove();
-        }, 3000);
+        }, 4000);
     }
 };
 
-function cleanAlertCrypto() {
+function removeResults() {
     while(resultsDiv.firstChild) {
         resultsDiv.removeChild(resultsDiv.firstChild);
     }
