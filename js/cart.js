@@ -1,6 +1,13 @@
 /* -- Globals -- */
-
 import { darkMode } from './helper-func.js';
+
+
+window.addEventListener('load', () => {
+    darkMode();
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentToken');
+})
+
 
 const cart = document.querySelector('#cart');
 const containerCart = document.querySelector('#cart-list tbody');
@@ -9,16 +16,9 @@ const emptyCartBtn = document.querySelector('#empty-cart');
 const listCourses = document.querySelector('#list-courses');
 let cartItems = [];
 
-
 listCourses.addEventListener('click', addCourse);
 cart.addEventListener('click', deleteCourse);
 emptyCartBtn.addEventListener('click', emptyCart);
-
-window.addEventListener('load', () => {
-    darkMode();
-    localStorage.removeItem('cartItems');
-    localStorage.removeItem('paymentToken');
-})
 
 
 /* -- Functions -- */
@@ -36,13 +36,11 @@ function addCourse(event) {
             color: '#000000',
             iconColor: '#02a502'
         })
-        
         readDataCourses(courseSelected);
     }
 };
 
 function readDataCourses(courseSelected) {
-    
     const infoCourse = {
         title: courseSelected.querySelector('#card-title').textContent,
         price: courseSelected.querySelector('.price-div span').textContent,
@@ -67,7 +65,6 @@ function readDataCourses(courseSelected) {
         cartItems = [...cartItems, infoCourse];
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-
     infoCourseToHTML();
 };
 
@@ -87,8 +84,8 @@ function deleteCourse(event) {
             background: '#bbbbbb',
             color: '#000000',
             allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
+        }).then( result => {
+            if(result.isConfirmed) {
                 Swal.fire({
                     title: "Articulo eliminado correctamente",
                     icon: "success",
@@ -122,8 +119,8 @@ function emptyCart() {
             background: '#bbbbbb',
             color: '#000000',
             allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
+        }).then( result => {
+            if(result.isConfirmed) {
                 Swal.fire({
                     title: "Has vaciado el carrito",
                     icon: "success",
@@ -144,7 +141,6 @@ function emptyCart() {
 };
 
 function infoCourseToHTML() {
-
     cleanHTML();
 
     cartItems.forEach( course => {
@@ -167,16 +163,15 @@ function buttonPay() {
     const existingButtonPay = document.querySelector('.button-cart-pay');
     
     if (cartItems.length >= 1) {
-        if (!existingButtonPay) {
+        if(!existingButtonPay) {
             const buttonPay = document.createElement('button');
             buttonPay.classList.add('button-cart-pay');
             buttonPay.textContent = 'Pagar';
-            buttonPay.onclick =  tokenToStorage;
-            
+            buttonPay.onclick = tokenToStorage;
             buttonCartDiv.appendChild(buttonPay);
         }
     } else {
-        if (existingButtonPay) {
+        if(existingButtonPay) {
             existingButtonPay.remove();
         }
     }
