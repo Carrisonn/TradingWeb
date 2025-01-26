@@ -90,7 +90,11 @@ p {
 }
 
 .error {
-    color: var(--redColor);
+    color: var(--whiteColor);
+    background-color: var(--redColor);
+    border-radius: .5rem;
+    padding: .5rem;
+    text-align: center;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 1.8rem;
@@ -164,10 +168,6 @@ p {
 .dark-mode input:not([type="submit"]),
 .dark-mode textarea {
     background-color: var(--greyColor3);
-}
-
-.dark-mode .error {
-    color: var(--redColor);
 }
 
 .dark-mode .results {
