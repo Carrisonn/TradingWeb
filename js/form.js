@@ -1,23 +1,7 @@
 /* -- Globals -- */
-
 import { darkMode } from './helper-func.js';
 import { showAlert } from './helper-func.js';
 import { cleanAlert } from './helper-func.js';
-
-const inputName =  document.querySelector('#name');
-const inputPhone =  document.querySelector('#phone');
-const inputEmail = document.querySelector('#email');
-const inputMessage = document.querySelector('#message');
-const btnSubmit = document.querySelector('#btn-submit');
-const divSpinner = document.querySelector('#div-spinner-form');
-const form = document.querySelector('#form');
-
-
-inputName.addEventListener('blur', validate);
-inputPhone.addEventListener('blur', validate);
-inputEmail.addEventListener('blur', validate);
-inputMessage.addEventListener('blur', validateTextArea);
-form.addEventListener('submit', submitForm);
 
 
 window.addEventListener('load', () => {
@@ -28,6 +12,21 @@ window.addEventListener('load', () => {
     localStorage.removeItem('paymentToken');
     checkFormInfo();
 });
+
+
+const inputName =  document.querySelector('#name');
+const inputPhone =  document.querySelector('#phone');
+const inputEmail = document.querySelector('#email');
+const inputMessage = document.querySelector('#message');
+const btnSubmit = document.querySelector('#btn-submit');
+const divSpinner = document.querySelector('#div-spinner-form');
+const form = document.querySelector('#form');
+
+inputName.addEventListener('blur', validate);
+inputPhone.addEventListener('blur', validate);
+inputEmail.addEventListener('blur', validate);
+inputMessage.addEventListener('blur', validateTextArea);
+form.addEventListener('submit', submitForm);
 
 
 const formObj = {
@@ -43,32 +42,32 @@ function validate(event) {
     if(event.target.value.trim() === '') {
         showAlert('Este campo no puede ir vacío', event.target.parentElement);
         formObj[event.target.name] = '';
-        checkFormInfo()
-        return
+        checkFormInfo();
+        return;
     }
 
     if(event.target.id === 'name' && !validateName(event.target.value)) {
         showAlert('Nombre inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
-        checkFormInfo()
-        return
+        checkFormInfo();
+        return;
     }
 
     if(event.target.id === 'phone' && !validatePhone(event.target.value)) {
         showAlert('Número demasiado corto o inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
-        checkFormInfo()
-        return
+        checkFormInfo();
+        return;
     }
 
     if(event.target.id === 'email' && !validateEmail(event.target.value)) {
-        showAlert('Email no válido', event.target.parentElement)
+        showAlert('Email no válido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
-        checkFormInfo()
-        return
+        checkFormInfo();
+        return;
     }
 
     formObj[event.target.name] = event.target.value.trim().toLowerCase();
@@ -77,13 +76,12 @@ function validate(event) {
 
 function validateTextArea(event) {
     if(event.target.value.length > 400) {
-        showAlert('Máximo 400 caracteres', event.target.parentElement)
+        showAlert('Máximo 400 caracteres', event.target.parentElement);
         formObj[event.target.name] = '';
-        return
+        return;
     }
-    
     formObj[event.target.name] = event.target.value.trim().toLowerCase();
-    checkFormInfo()
+    checkFormInfo();
 };
 
 function validateName(name) {
