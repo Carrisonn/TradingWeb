@@ -1,10 +1,17 @@
 /* -- Globals -- */
-
 import { darkMode } from "./helper-func.js";
+
+
+window.addEventListener('load', () => {
+    darkMode();
+    visibilityButtons();
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentToken');
+});
+
 
 let currentStep = 1;
 const totalSteps = 3;
-
 const backButton = document.querySelector('#back-button');
 const nextButton = document.querySelector('#next-button');
 
@@ -23,14 +30,6 @@ nextButton.addEventListener('click', () => {
         visibilityButtons()
     }
 });
-
-window.addEventListener('load', () => {
-    darkMode();
-    visibilityButtons();
-    localStorage.removeItem('cartItems');
-    localStorage.removeItem('paymentToken');
-})
-
 
 
 /* -- Functions -- */

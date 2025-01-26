@@ -1,8 +1,17 @@
 /* -- Globals -- */
-
 import { darkMode } from "./helper-func.js";
 import { showAlert } from "./helper-func.js";
 import { cleanAlert } from "./helper-func.js";
+
+
+window.addEventListener('load', () => {
+    isAuth();
+    showCartItems();
+    darkMode();
+    form.reset();
+    checkPaymentInfo();
+});
+
 
 const userCoursesList = document.querySelector('#user-courses-list');
 const inputName =  document.querySelector('#name');
@@ -16,7 +25,6 @@ const btnSubmit = document.querySelector('#btn-submit');
 const divSpinner = document.querySelector('#div-spinner');
 const form = document.querySelector('#form');
 
-
 inputName.addEventListener('blur', validate);
 inputEmail.addEventListener('blur', validate);
 inputCreditCard.addEventListener('blur', validate);
@@ -25,15 +33,6 @@ inputExpirationDate.addEventListener('blur', validate);
 inputTerms.addEventListener('click', validate);
 btnPaymentCancel.addEventListener('click', paymentCancel);
 form.addEventListener('submit', submitForm);
-
-
-window.addEventListener('load', () => {
-    isAuth();
-    showCartItems();
-    darkMode();
-    form.reset();
-    checkPaymentInfo();
-});
 
 
 const actualDate = new Date();
@@ -54,7 +53,6 @@ const paymentObj = {
 /* -- Functions -- */
 function isAuth() {
     const tokenExist = localStorage.getItem('paymentToken');
-
     tokenExist === null ? window.location.href = 'index.html' : null;
 };
 
@@ -69,6 +67,8 @@ function showCartItems() {
         titleCourse.classList.add('p-results', 'no-margin');
         titleCourse.innerHTML = `Curso: <span class="font-weight">${title}</span>`;
 
+        const priceToNumber = Number(price.slice(1));
+        totalPrice += priceToNumber * quantity;
         const priceCourse = document.createElement('p');
         priceCourse.classList.add('p-results', 'no-margin');
         priceCourse.innerHTML = `Precio por curso: <span class="font-weight">${price}</span>`;
@@ -81,19 +81,14 @@ function showCartItems() {
         userCoursesList.appendChild(priceCourse);
         userCoursesList.appendChild(quantityCourse);
 
-        const priceToNumber = Number(price.slice(1));
-        totalPrice += priceToNumber * quantity;
-
         if(cartItemsFromStorage.length >= 1) {
             const hr = document.createElement('hr');
             userCoursesList.appendChild(hr);
         }
     });
-
     const totalPriceResum = document.createElement('p');
     totalPriceResum.classList.add('p-results', 'no-margin');
     totalPriceResum.innerHTML = `Total a pagar: <span class="font-weight">$${totalPrice}</span>`;
-
     userCoursesList.appendChild(totalPriceResum);
 };
 
@@ -209,15 +204,13 @@ function validateExpirationDate(event) {
             return;
         }
     } else if(event.target.value.length <= 6) {
-        showAlert('La fecha de expiración debe tener el formato AAAA/MM y no contener ningún carácter especial o letras', event.target.parentElement)
+        showAlert('Debes introducir únicamente números', event.target.parentElement);
         paymentObj[event.target.name] = '';
         event.target.value = '';
         checkPaymentInfo();
         return;
     }
-
     paymentObj[event.target.name] = event.target.value.trim().toLowerCase();
-
     checkPaymentInfo();
 };
 
@@ -229,9 +222,7 @@ function validateTerms(event) {
         checkPaymentInfo();
         return;
     }
-
     paymentObj[event.target.name] = event.target.checked;
-
     checkPaymentInfo();
 };
 
@@ -264,7 +255,7 @@ function submitForm(event) {
             color: '#000000',
             iconColor: '#02a502',
             allowOutsideClick: false
-        }).then(result => {
+        }).then( result => {
             if(result.isConfirmed) {
                 localStorage.removeItem('cartItems');
                 localStorage.removeItem('paymentToken');
@@ -298,7 +289,7 @@ function paymentCancel(event) {
         background: '#bbbbbb',
         color: '#000000',
         allowOutsideClick: false
-    }).then((result) => {
+    }).then( result => {
         if(result.isConfirmed) {
             window.location.href = 'index.html';
         }
