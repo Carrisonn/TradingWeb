@@ -1,20 +1,19 @@
 /* -- Globals -- */
 import { darkMode } from "./helper-func.js";
 import { showAlert } from "./helper-func.js";
-import { cleanAlert } from "./helper-func.js";
 
 
 window.addEventListener('load', () => {
     isAuth();
-    showCartItems();
+    checkPaymentInfo();
     darkMode();
     form.reset();
-    checkPaymentInfo();
 });
 
 
+const linksNav = document.querySelectorAll('#link');
 const userCoursesList = document.querySelector('#user-courses-list');
-const inputName =  document.querySelector('#name');
+const inputName = document.querySelector('#name');
 const inputEmail = document.querySelector('#email');
 const inputCreditCard = document.querySelector('#credit-card');
 const inputCVV = document.querySelector('#cvv');
@@ -25,6 +24,7 @@ const btnSubmit = document.querySelector('#btn-submit');
 const divSpinner = document.querySelector('#div-spinner');
 const form = document.querySelector('#form');
 
+linksNav.forEach(link => link.addEventListener('click', checkUserChangedURL));
 inputName.addEventListener('blur', validate);
 inputEmail.addEventListener('blur', validate);
 inputCreditCard.addEventListener('blur', validate);
@@ -53,14 +53,14 @@ const paymentObj = {
 /* -- Functions -- */
 function isAuth() {
     const tokenExist = localStorage.getItem('paymentToken');
-    tokenExist === null ? window.location.href = 'index.html' : null;
+    tokenExist === null ? window.location.href = 'index.html' : showCartItems();
 };
 
 function showCartItems() {
     const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems'));
     let totalPrice = 0;
-    
-    cartItemsFromStorage.forEach( course => {
+
+    cartItemsFromStorage.forEach(course => {
         const { title, quantity, price } = course;
 
         const titleCourse = document.createElement('p');
@@ -81,11 +81,12 @@ function showCartItems() {
         userCoursesList.appendChild(priceCourse);
         userCoursesList.appendChild(quantityCourse);
 
-        if(cartItemsFromStorage.length >= 1) {
+        if (cartItemsFromStorage.length >= 1) {
             const hr = document.createElement('hr');
             userCoursesList.appendChild(hr);
         }
     });
+
     const totalPriceResum = document.createElement('p');
     totalPriceResum.classList.add('p-results', 'no-margin');
     totalPriceResum.innerHTML = `Total a pagar: <span class="font-weight">$${totalPrice}</span>`;
@@ -93,13 +94,13 @@ function showCartItems() {
 };
 
 function validate(event) {
-    if(event.target.value.trim() === '') {
+    if (event.target.value.trim() === '') {
         showAlert('Este campo no puede ir vacío', event.target.parentElement);
         checkPaymentInfo();
         return;
     }
 
-    if(event.target.id === 'name' && !validateName(event.target.value)) {
+    if (event.target.id === 'name' && !validateName(event.target.value)) {
         showAlert('Nombre no válido', event.target.parentElement);
         paymentObj[event.target.name] = '';
         event.target.value = '';
@@ -109,7 +110,7 @@ function validate(event) {
         paymentObj[event.target.name] = event.target.value.trim().toLowerCase();
     }
 
-    if(event.target.id === 'email' && !validateEmail(event.target.value)) {
+    if (event.target.id === 'email' && !validateEmail(event.target.value)) {
         showAlert('Email no válido', event.target.parentElement)
         paymentObj[event.target.name] = '';
         event.target.value = '';
@@ -119,7 +120,7 @@ function validate(event) {
         paymentObj[event.target.name] = event.target.value.trim().toLowerCase();
     }
 
-    if(event.target.id === 'credit-card' && !validateCreditCard(event.target.value)) {
+    if (event.target.id === 'credit-card' && !validateCreditCard(event.target.value)) {
         showAlert('Tarjeta no válida', event.target.parentElement)
         paymentObj[event.target.name] = '';
         event.target.value = '';
@@ -129,7 +130,7 @@ function validate(event) {
         paymentObj[event.target.name] = event.target.value.trim().toLowerCase();
     }
 
-    if(event.target.id === 'cvv' && !validateCVV(event.target.value)) {
+    if (event.target.id === 'cvv' && !validateCVV(event.target.value)) {
         showAlert('CVV no válido', event.target.parentElement)
         paymentObj[event.target.name] = '';
         event.target.value = '';
@@ -139,13 +140,13 @@ function validate(event) {
         paymentObj[event.target.name] = event.target.value.trim().toLowerCase();
     }
 
-    if(event.target.id === 'expiration-date') {
+    if (event.target.id === 'expiration-date') {
         validateExpirationDate(event);
     }
 
-    if(event.target.id === 'terms' ) {
+    if (event.target.id === 'terms') {
         validateTerms(event);
-    } 
+    }
 
     checkPaymentInfo();
 };
@@ -178,7 +179,7 @@ function validateCVV(cvv) {
 function validateExpirationDate(event) {
     const onlyDigits = event.target.value.replace(/[^0-9]/g, '');
 
-    if(onlyDigits) {
+    if (onlyDigits) {
         const formatedValue = onlyDigits.match(/.{1,4}/g).join('/');
         event.target.value = formatedValue;
     } else {
@@ -187,24 +188,24 @@ function validateExpirationDate(event) {
         event.target.value = '';
         checkPaymentInfo();
         return;
-    } 
+    }
 
-    if(event.target.value.length === 7) {
-        if(event.target.value < `${actualYear}/${actualMonth}`) {
+    if (event.target.value.length === 7) {
+        if (event.target.value < `${actualYear}/${actualMonth}`) {
             showAlert('La fecha de expiración no puede ser anterior a la fecha actual', event.target.parentElement);
             paymentObj[event.target.name] = '';
             event.target.value = '';
             checkPaymentInfo();
             return;
-        } else if(onlyDigits.slice(0, 4) > actualYear + 20 || onlyDigits.slice(4, 6) > 12) {
+        } else if (onlyDigits.slice(0, 4) > actualYear + 10 || onlyDigits.slice(4, 6) > 12) {
             showAlert('Fecha de expiración no válida', event.target.parentElement);
             paymentObj[event.target.name] = '';
             event.target.value = '';
             checkPaymentInfo();
             return;
         }
-    } else if(event.target.value.length <= 6) {
-        showAlert('Debes introducir únicamente números', event.target.parentElement);
+    } else if (event.target.value.length <= 6) {
+        showAlert('El formato de fecha a de ser AAAA/MM', event.target.parentElement);
         paymentObj[event.target.name] = '';
         event.target.value = '';
         checkPaymentInfo();
@@ -215,7 +216,7 @@ function validateExpirationDate(event) {
 };
 
 function validateTerms(event) {
-    if(event.target.checked === false) { 
+    if (event.target.checked === false) {
         showAlert('Debes aceptar los términos y condiciones para poder continuar', event.target.parentElement.parentElement);
         paymentObj[event.target.name] = false;
         event.target.checked = false;
@@ -229,7 +230,7 @@ function validateTerms(event) {
 function checkPaymentInfo() {
     const allRequiredFilled = Object.keys(paymentObj).every(key => paymentObj[key] !== '' && paymentObj[key] !== false);
 
-    if(allRequiredFilled) {
+    if (allRequiredFilled) {
         btnSubmit.classList.remove('disabled');
         btnSubmit.disabled = false;
     } else {
@@ -255,17 +256,19 @@ function submitForm(event) {
             color: '#000000',
             iconColor: '#02a502',
             allowOutsideClick: false
-        }).then( result => {
-            if(result.isConfirmed) {
+        }).then(result => {
+            if (result.isConfirmed) {
                 localStorage.removeItem('cartItems');
                 localStorage.removeItem('paymentToken');
-                
-                paymentObj.name = ''
-                paymentObj.email = ''
-                paymentObj.creditCard = ''
-                paymentObj.cvv = ''
-                paymentObj.expirationDate = ''
-                paymentObj.terms = false
+
+                Object.assign(paymentObj, {
+                    name: '',
+                    email: '',
+                    creditCard: '',
+                    cvv: '',
+                    expirationDate: '',
+                    terms: false
+                });
 
                 window.location.href = 'index.html';
             }
@@ -289,9 +292,34 @@ function paymentCancel(event) {
         background: '#bbbbbb',
         color: '#000000',
         allowOutsideClick: false
-    }).then( result => {
-        if(result.isConfirmed) {
+    }).then(result => {
+        if (result.isConfirmed) {
             window.location.href = 'index.html';
         }
     })
 };
+
+function checkUserChangedURL(event) {
+    event.preventDefault();
+    
+    const referenceURL = event.target.getAttribute('href');
+
+    Swal.fire({
+        title: "¿Estás seguro de que quieres salir?",
+        text: "Tus cursos se borrarán del carrito",
+        icon: "warning",
+        showCancelButton: true,
+        iconColor: "#ff902f",
+        confirmButtonColor: "#00a3cc",
+        cancelButtonColor: "#af0b0b",
+        confirmButtonText: "Sí, salir",
+        cancelButtonText: "Atrás",
+        background: '#bbbbbb',
+        color: '#000000',
+        allowOutsideClick: false
+    }).then(result => {
+        if (result.isConfirmed) {
+            referenceURL ? window.location.href = referenceURL : window.location.href = 'index.html';
+        }
+    })
+}
