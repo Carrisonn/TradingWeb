@@ -34,7 +34,7 @@ nextButton.addEventListener('click', () => {
 
 /* -- Functions -- */
 function updateOpinions() {
-    for (let i = 1; i < totalSteps; i++) {
+    for (let i = 1; i <= totalSteps; i++) {
         const opinionDiv = document.querySelector(`#step-${i}`)
 
         if (i === currentStep) {
