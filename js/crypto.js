@@ -1,6 +1,7 @@
 /* -- Globals -- */
 document.addEventListener('DOMContentLoaded', () => {
     checkCryptos();
+    formCrypto.reset();
 });
 
 
@@ -21,7 +22,7 @@ const objSearch = {
 
 
 /* -- Functions -- */
-const getCryptos = cryptos => new Promise( resolve => {
+const getCryptos = cryptos => new Promise(resolve => {
     resolve(cryptos);
 });
 
@@ -29,9 +30,9 @@ function checkCryptos() {
     const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
     try {
         fetch(url)
-            .then( response => response.json() )
-            .then( result => getCryptos(result.Data) )
-            .then( cryptos => renderCryptos(cryptos) )
+            .then(response => response.json())
+            .then(result => getCryptos(result.Data))
+            .then(cryptos => renderCryptos(cryptos))
     } catch (error) {
         console.log(error);
         showAlertCrypto('Hubo un error al cargar la lista de criptomonedas');
@@ -40,7 +41,7 @@ function checkCryptos() {
 
 function renderCryptos(cryptos) {
     cryptos.forEach(crypto => {
-        const { FullName, Name,} = crypto.CoinInfo;
+        const { FullName, Name, } = crypto.CoinInfo;
         const option = document.createElement('option');
         option.value = Name;
         option.textContent = FullName;
@@ -56,12 +57,12 @@ function submitFormCrypto(event) {
     event.preventDefault();
 
     const { coin, crypto } = objSearch;
-    if(coin === '' || crypto === '') {
+    if (coin === '' || crypto === '') {
         showAlertCrypto('Ambos campos son requeridos');
         return;
     }
 
-    checkAPI(); 
+    checkAPI();
 };
 
 function checkAPI() {
@@ -83,7 +84,7 @@ function showCryptoInfo(cryptoInfo) {
     const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE, MARKET } = cryptoInfo;
 
     const price = document.createElement('p');
-    price.classList.add('p-results','no-margin');
+    price.classList.add('p-results', 'no-margin');
     price.innerHTML = `El precio es: <span class="font-weight">${PRICE}</span>`;
 
     const hightDay = document.createElement('p');
@@ -117,7 +118,7 @@ function showCryptoInfo(cryptoInfo) {
 
 function showAlertCrypto(message) {
     const errorExist = document.querySelector('.error.crypto');
-    if(!errorExist) {
+    if (!errorExist) {
         const error = document.createElement('p');
         error.textContent = message;
         error.classList.add('error-crypto', 'no-margin');
@@ -130,7 +131,7 @@ function showAlertCrypto(message) {
 };
 
 function removeResults() {
-    while(resultsDiv.firstChild) {
+    while (resultsDiv.firstChild) {
         resultsDiv.removeChild(resultsDiv.firstChild);
     }
 };
