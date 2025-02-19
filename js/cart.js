@@ -23,9 +23,9 @@ emptyCartBtn.addEventListener('click', emptyCart);
 
 /* -- Functions -- */
 function addCourse(event) {
-    if(event.target.classList.contains('add-cart')) {
+    if (event.target.classList.contains('add-cart')) {
         const courseSelected = event.target.parentElement;
-        
+
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -48,10 +48,10 @@ function readDataCourses(courseSelected) {
         quantity: 1
     }
 
-    const exist = cartItems.some( courseSelected => courseSelected.id === infoCourse.id);
-    if(exist) {
-        const courses = cartItems.map( course => {
-            if(course.id === infoCourse.id) {
+    const exist = cartItems.some(courseSelected => courseSelected.id === infoCourse.id);
+    if (exist) {
+        const courses = cartItems.map(course => {
+            if (course.id === infoCourse.id) {
                 course.quantity++;
                 return course;
             } else {
@@ -60,7 +60,7 @@ function readDataCourses(courseSelected) {
         })
         cartItems = [...courses];
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        
+
     } else {
         cartItems = [...cartItems, infoCourse];
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -69,7 +69,7 @@ function readDataCourses(courseSelected) {
 };
 
 function deleteCourse(event) {
-    if(event.target.classList.contains('button-cart-delete')) {
+    if (event.target.classList.contains('button-cart-delete')) {
         const courseID = event.target.getAttribute('data-id');
 
         Swal.fire({
@@ -84,8 +84,8 @@ function deleteCourse(event) {
             background: '#bbbbbb',
             color: '#000000',
             allowOutsideClick: false
-        }).then( result => {
-            if(result.isConfirmed) {
+        }).then(result => {
+            if (result.isConfirmed) {
                 Swal.fire({
                     title: "Articulo eliminado correctamente",
                     icon: "success",
@@ -96,8 +96,8 @@ function deleteCourse(event) {
                     confirmButtonText: "Genial",
                     allowOutsideClick: false
                 });
-                
-                cartItems = cartItems.filter( course => course.id !== courseID);
+
+                cartItems = cartItems.filter(course => course.id !== courseID);
                 infoCourseToHTML();
                 buttonPay();
             }
@@ -106,7 +106,7 @@ function deleteCourse(event) {
 };
 
 function emptyCart() {
-    if(cartItems.length > 0) {
+    if (cartItems.length > 0) {
         Swal.fire({
             title: "¿Estás seguro de que quieres vaciar el carrito?",
             icon: "warning",
@@ -119,8 +119,8 @@ function emptyCart() {
             background: '#bbbbbb',
             color: '#000000',
             allowOutsideClick: false
-        }).then( result => {
-            if(result.isConfirmed) {
+        }).then(result => {
+            if (result.isConfirmed) {
                 Swal.fire({
                     title: "Has vaciado el carrito",
                     icon: "success",
@@ -131,7 +131,7 @@ function emptyCart() {
                     confirmButtonText: "Genial",
                     allowOutsideClick: false
                 });
-                
+
                 cartItems = [];
                 buttonPay();
                 infoCourseToHTML();
@@ -143,7 +143,7 @@ function emptyCart() {
 function infoCourseToHTML() {
     cleanHTML();
 
-    cartItems.forEach( course => {
+    cartItems.forEach(course => {
         const { title, price, quantity, id } = course;
 
         const trow = document.createElement('tr');
@@ -161,9 +161,9 @@ function infoCourseToHTML() {
 
 function buttonPay() {
     const existingButtonPay = document.querySelector('.button-cart-pay');
-    
+
     if (cartItems.length >= 1) {
-        if(!existingButtonPay) {
+        if (!existingButtonPay) {
             const buttonPay = document.createElement('button');
             buttonPay.classList.add('button-cart-pay');
             buttonPay.textContent = 'Pagar';
@@ -171,7 +171,7 @@ function buttonPay() {
             buttonCartDiv.appendChild(buttonPay);
         }
     } else {
-        if(existingButtonPay) {
+        if (existingButtonPay) {
             existingButtonPay.remove();
         }
     }
@@ -186,7 +186,7 @@ function tokenToStorage() {
 };
 
 function cleanHTML() {
-    while(containerCart.firstChild) {
+    while (containerCart.firstChild) {
         containerCart.removeChild(containerCart.firstChild)
     }
 };
