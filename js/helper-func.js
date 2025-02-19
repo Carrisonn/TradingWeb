@@ -27,7 +27,7 @@ export function showAlert(message, reference) {
     }, 4000);
 };
 
-export function cleanAlert(reference) {
+function cleanAlert(reference) {
     const cleanMessage = reference.querySelector('.error');
     cleanMessage ? reference.removeChild(cleanMessage) : null;
 };
