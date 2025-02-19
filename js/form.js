@@ -1,21 +1,19 @@
 /* -- Globals -- */
 import { darkMode } from './helper-func.js';
 import { showAlert } from './helper-func.js';
-import { cleanAlert } from './helper-func.js';
 
 
 window.addEventListener('load', () => {
+    checkFormInfo();
     darkMode();
     form.reset();
-    formCrypto.reset(); // crypto.js
     localStorage.removeItem('cartItems');
     localStorage.removeItem('paymentToken');
-    checkFormInfo();
 });
 
 
-const inputName =  document.querySelector('#name');
-const inputPhone =  document.querySelector('#phone');
+const inputName = document.querySelector('#name');
+const inputPhone = document.querySelector('#phone');
 const inputEmail = document.querySelector('#email');
 const inputMessage = document.querySelector('#message');
 const btnSubmit = document.querySelector('#btn-submit');
@@ -39,14 +37,14 @@ const formObj = {
 
 /* -- Functions -- */
 function validate(event) {
-    if(event.target.value.trim() === '') {
+    if (event.target.value.trim() === '') {
         showAlert('Este campo no puede ir vacío', event.target.parentElement);
         formObj[event.target.name] = '';
         checkFormInfo();
         return;
     }
 
-    if(event.target.id === 'name' && !validateName(event.target.value)) {
+    if (event.target.id === 'name' && !validateName(event.target.value)) {
         showAlert('Nombre inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
@@ -54,7 +52,7 @@ function validate(event) {
         return;
     }
 
-    if(event.target.id === 'phone' && !validatePhone(event.target.value)) {
+    if (event.target.id === 'phone' && !validatePhone(event.target.value)) {
         showAlert('Número demasiado corto o inválido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
@@ -62,7 +60,7 @@ function validate(event) {
         return;
     }
 
-    if(event.target.id === 'email' && !validateEmail(event.target.value)) {
+    if (event.target.id === 'email' && !validateEmail(event.target.value)) {
         showAlert('Email no válido', event.target.parentElement);
         formObj[event.target.name] = '';
         event.target.value = '';
@@ -75,7 +73,7 @@ function validate(event) {
 };
 
 function validateTextArea(event) {
-    if(event.target.value.length > 400) {
+    if (event.target.value.length > 400) {
         showAlert('Máximo 400 caracteres', event.target.parentElement);
         formObj[event.target.name] = '';
         return;
@@ -106,7 +104,7 @@ function checkFormInfo() {
     const requiredFields = Object.keys(formObj).filter(key => key !== 'message');
     const allRequiredFilled = requiredFields.every(key => formObj[key] !== '');
 
-    if(allRequiredFilled) {
+    if (allRequiredFilled) {
         btnSubmit.classList.remove('disabled');
         btnSubmit.disabled = false;
     } else {
@@ -134,13 +132,14 @@ function submitForm(event) {
             allowOutsideClick: false
         });
 
-        formObj.name = ''
-        formObj.phone = ''
-        formObj.email = ''
-        formObj.message = ''
+        Object.assign(formObj, {
+            name: '',
+            phone: '',
+            email: '',
+            message: ''
+        });
 
         form.reset()
-
         checkFormInfo();
     }, 2000);
 };
